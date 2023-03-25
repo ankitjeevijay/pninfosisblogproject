@@ -1,0 +1,58 @@
+<%- include('../header.ejs') %>
+
+    <!-- main body start  -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="container-xxl">
+                <div class="row my-4 mx-3">
+                    <div class="col-md-2">
+                        <div class="sidebar">
+                            <div class="sidebar-header">
+                                <img src="../image/lock.png" alt="lock image" class="sidebar-logo">
+                            </div>
+                            <div class="sidebar-menu">
+                                <a href="/admin/blogdisplay" class="sidebar-item" target="iframe_a">
+                                    <i class="fa-sharp fa-solid fa-blog"></i>
+                                    <span class="sidebar-text"> Display Blog</span>
+                                </a>
+                                <a href="/admin/categorydisplay" class="sidebar-item" target="iframe_a">
+                                    <i class="fa-solid fa-arrow-up-a-z"></i>
+                                    <span class="sidebar-text"> Categories</span>
+                                </a>
+                                <a href="/admin/displaycontact" class="sidebar-item" target="iframe_a">
+                                    <i class="fa-solid fa-address-card"></i>
+                                    <span class="sidebar-text"> Contact</span>
+                                </a>
+                                <a href="/admin/displayabout" class="sidebar-item" target="iframe_a">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span class="sidebar-text"> About</span>
+                                </a>
+                                <a href="/admin/displaydetails" class="sidebar-item" target="iframe_a">
+                                    <i class="fa-solid fa-list-check"></i>
+                                    <span class="sidebar-text"> Details</span>
+                                </a>
+                                <a href="/logout" class="sidebar-item">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                    <span class="sidebar-text"> Logout</span>
+                                </a>
+                               
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10  pt-5">
+                        <span><%= n %></span>
+                        <span>(<%= e %>)</span>
+                        <iframe src="/admin/displaydetails" name="iframe_a" height="505px" width="100%"
+                            title="Iframe Example"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- main body End  -->
+
+
+    <%- include('../footer.ejs') %>

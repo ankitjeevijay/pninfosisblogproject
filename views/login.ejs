@@ -1,0 +1,62 @@
+<%-include('./header.ejs') %>
+
+   <!----------------------- Main body Start -------------------------- -->
+   <style>
+     body {
+    background: url(../image/slider2.jpg) no-repeat center center/cover ; 
+    background-position: 20% 75%;  
+  }
+   </style>
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="contaniner-xxl">
+            <div class="row">
+               <section>
+                  <div class="container mt-4 pt-4 mb-5 pb-5">
+                     <div class="row ">
+                        <div class="col-12 col-sm-8 col-md-6 m-auto ">
+                           <div class="card border-0  shadow-lg">
+                              <div class="card-body text-center shadow login-bg">
+                                 <svg class="mx-auto  loginlogo" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                    fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                    <path fill-rule="evenodd"
+                                       d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                 </svg>
+            
+                                 <% if(message.length > 0){ %>
+                                    <div class="alert alert-danger">
+                                       <%= message %>
+                                    </div>
+            
+                                <% } %>
+            
+                                 <form action="/veryfylogin" method="post">
+                                    <input type="email" name="email" id="" class="form-control my-4 py-3"
+                                       placeholder="Enter Email or phone">
+                                    <input type="password" name="password" id="" class="form-control my-4 py-3"
+                                       placeholder="Enter valid password">
+                                    <div class="text-center mt-3">
+                                       <button type="submit" class="btn btn-dark btnbg px-5 mb-3">Login</button>
+                                       <a href="/registration" class="nav-link">
+                                          <p>New Registration <span class="text-info">SignUp</span></p>
+                                       </a>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+            
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <!-------------------------- Main body End  --------------------------->
+
+
+
+   <%-include('./footer.ejs') %>

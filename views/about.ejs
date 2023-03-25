@@ -1,0 +1,33 @@
+<%-include('./header.ejs')  %>
+
+  <!----------------------- Main body start-----------------  -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="container-xxl">
+            <div class="row  login-bg">
+              <div class="col-md-12 px-0">
+                <p class="atext"><u>ABOUT US</u></p>
+              </div>
+           
+            </div><!--end row-->
+           
+                   <% d.forEach((item)=>{ %>
+           
+                     <div class="row abody">
+                       <div class="col-md-7">
+                         <p class="aconten"> <%= item.description %></p>
+                       </div>
+                       <div class="col-md-5">
+                        <img src="<%= item.image.url %>" class="aimg" alt=""></a>
+                       </div>
+                     </div><!--end row-->
+           
+                   <%}) %>
+        </div>
+      </div>
+    </div>
+ 
+ 
+ <!----------------------- Main body End-----------------  -->
+
+<%-include('./footer.ejs')  %>

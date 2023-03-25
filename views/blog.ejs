@@ -1,0 +1,37 @@
+<%-include('./header.ejs') %>
+
+    <!------------------------------Mani body- Start------------------------------------>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="container-xxl">
+                <div class="row my-5">
+                    <h1 style=" text-align: center; padding: 10px;">My Blog</h1>
+            
+                    <% b.forEach((item)=>{ %>
+            
+                        <div class="col-md-3 mt-4">
+                            <div class="card card-bg">
+                                <img src="<%= item.image.url %>" class="w-100 cardimg" alt="">
+                                <div class="card-body">
+                                    <p class="cardp"><%= item.title.slice(0,17) %></p>
+                                    <p><%= item.description.slice(0,17) %></p>
+                                    <a href="/details/<%= item._id %>" class="btn btn-dark btnbg " tabindex="-1" role="button"
+                                        aria-disabled="true">Read More...</a>
+                                </div><!--card body-->
+                            </div><!--End card-->
+                        </div>
+            
+                    <% }) %>
+                   
+                  
+                </div><!--End row-->
+            </div>
+        </div>
+    </div>
+   
+    <!-------------------------------Main body End------------------------------------>
+
+
+  
+
+    <%-include('./footer.ejs') %>
