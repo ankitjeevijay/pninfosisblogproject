@@ -30,18 +30,24 @@ class BlogController {
             })
             //console.log(myimage)
             // console.log(req.body)
-
-            const result = new BlogModel({
-                title: req.body.title,
-                description: req.body.description,
-                image: {
-                    public_id: myimage.public_id,
-                    url: myimage.secure_url
-                }
-            })
-            await result.save()
-             //console.log(result)
-            res.redirect('/admin/blogdisplay')
+            const{title, description,image} = req.body
+            if(title, description, image){
+                const result = new BlogModel({
+                    title: req.body.title,
+                    description: req.body.description,
+                    image: {
+                        public_id: myimage.public_id,
+                        url: myimage.secure_url
+                    }
+                })
+                await result.save()
+                 //console.log(result)
+                res.redirect('/admin/blogdisplay')
+            }else{
+                req.flash('error','All Fields are required')
+                res.redirect('/admin/blogdisplay',res.redirect('/admin/blogdisplay'))
+            }
+           
         } catch (error) {
 
             console.log(error)
