@@ -18,7 +18,7 @@ class AboutController {
   static displayAbout = async (req, res) => {
     try {
       const display = await AboutModel.find()
-      res.render('admin/about/display', { d: display })
+      res.render('admin/about/display', { d: display,message:req.flash('error') })
     } catch (error) {
       console.log(error)
     }
@@ -38,24 +38,29 @@ class AboutController {
     try {
 
       //console.log(req.files.image)
-
+      const {description, image} = req.body
+      if(description && image){
         const file = req.files.image
-       //   //console.log(file)
-          const myimage = await cloudinary.uploader.upload(file.tempFilePath,{
-            folder: 'blogImage'
-
-        })
-
-      const insert = await AboutModel({
-        description: req.body.description,
-        image: {
-          public_id: myimage.public_id,
-          url: myimage.secure_url
+        //   //console.log(file)
+           const myimage = await cloudinary.uploader.upload(file.tempFilePath,{
+             folder: 'blogImage'
+ 
+         })
+ 
+       const insert = await AboutModel({
+         description: req.body.description,
+         image: {
+           public_id: myimage.public_id,
+           url: myimage.secure_url
+       }
+       })
+       await insert.save()
+       res.redirect('/admin/displayabout')
+      }else{
+        req.flash('error', 'All field are required')
+        res.redirect('/admin/displayabout')
       }
-      })
-      await insert.save()
-      res.redirect('/admin/displayabout')
-
+       
     } catch (error) {
       console.log(error)
     }

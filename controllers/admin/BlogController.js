@@ -15,37 +15,36 @@ class BlogController {
     static displayBlog = async (req, res) => {
 
         const data = await BlogModel.find();
-        res.render('admin/blog/display', { d: data })
+        res.render('admin/blog/display', { d: data, message:req.flash('error') })
 
     }
 
     static insertblog = async (req, res) => {
         try {
-
-            const file = req.files.image
-            //console.log(imagefile)
-            const myimage = await cloudinary.uploader.upload(file.tempFilePath, {
-                folder: 'blogImage',
-
-            })
-            //console.log(myimage)
-            // console.log(req.body)
-            const{title, description,image} = req.body
-            if(title, description, image){
-                const result = new BlogModel({
-                    title: req.body.title,
-                    description: req.body.description,
-                    image: {
-                        public_id: myimage.public_id,
-                        url: myimage.secure_url
-                    }
+            const {title, description, image} = req.body
+            if(title && description && image){
+                const file = req.files.image
+                //console.log(imagefile)
+                const myimage = await cloudinary.uploader.upload(file.tempFilePath, {
+                    folder: 'blogImage',
+    
                 })
-                await result.save()
-                 //console.log(result)
-                res.redirect('/admin/blogdisplay')
+                //console.log(myimage)
+                // console.log(req.body)
+                    const result = new BlogModel({
+                        title: req.body.title,
+                        description: req.body.description,
+                        image: {
+                            public_id: myimage.public_id,
+                            url: myimage.secure_url
+                        }
+                    })
+                    await result.save()
+                     //console.log(result)
+                    res.redirect('/admin/blogdisplay')
             }else{
-                req.flash('error','All Fields are required')
-                res.redirect('/admin/blogdisplay',res.redirect('/admin/blogdisplay'))
+                req.flash('error','All field are required')
+                res.redirect('/admin/blogdisplay')
             }
            
         } catch (error) {
@@ -101,7 +100,7 @@ class BlogController {
                  description: req.body.description,
                  image: {
                     public_id: myimage.public_id,
-                    url: myimage.secure_url
+                    url: myimage.secure_url 
                 }
              })
 

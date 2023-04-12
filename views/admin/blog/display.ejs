@@ -24,7 +24,12 @@
                 <button type="button" class="btn btn-dark btnbg px-4" data-bs-toggle="modal"
                     data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Blog</button>
             </div>
+            <% if(message.length > 0){ %>
+                <div class="alert alert-danger">
+                   <%= message %>
+                </div>
 
+            <% } %>
             <!------------- add button pop code start -------- -->
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -37,12 +42,6 @@
                         </div>
                         <div class="modal-body">
                             <form action="/insertblog" method="post" enctype="multipart/form-data">
-                                <% if(message.length > 0){ %>
-                                    <div class="alert alert-danger">
-                                       <%= message %>
-                                    </div>
-            
-                                <% } %>
                                 <div class="mb-2">
                                     <label for="recipient-name" class="col-form-label">Title:</label>
                                     <input type="text" name="title" class="form-control">

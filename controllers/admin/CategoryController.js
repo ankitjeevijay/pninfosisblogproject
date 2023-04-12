@@ -22,13 +22,18 @@ class CategoryController {
 
     static insertCategory = async (req, res) => {
         try {
-
-            const result = new CategoryModel({
+            const {cat_name} = req.body
+        if(cat_name){
+             const result = new CategoryModel({
                 cat_name: req.body.cat_name
             })
             await result.save()
             res.redirect('/admin/categorydisplay')
 
+        }else{
+            res.redirect('/admin/categorydisplay')
+        }
+           
 
         } catch (error) {
 

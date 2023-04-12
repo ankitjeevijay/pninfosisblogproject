@@ -18,6 +18,12 @@
                            <div class="card-body">
                               <h1 class="text-center imptext">Contact Us Now !</h1>
                               <form action="/insertcontact" method="post">
+                                 <% if(message.length > 0){ %>
+                                    <div class="alert alert-danger">
+                                       <%= message %>
+                                    </div>
+            
+                                <% } %>
                                  <label for="">Full Name</label>
                                  <input type="text" name="userName" id="" class="form-control my-1 py-2" placeholder="Enter Name">
                                  <label for="">Email Id</label>

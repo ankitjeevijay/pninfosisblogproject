@@ -34,7 +34,7 @@ class FrontController{
 
 
     static contact = (req, res)=>{
-        res.render('contact')
+        res.render('contact',{message:req.flash('error')})
     }
 
     static blog = async (req, res)=>{

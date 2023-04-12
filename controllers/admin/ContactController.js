@@ -13,17 +13,23 @@ class ContactController{
 
     static insertContact = async (req, res)=>{
         try{
-            
-            const insert = await ContactModel({
-                userName: req.body.userName,
-                emailId: req.body.emailId,
-                mobileNo: req.body.mobileNo,
-                userAddress: req.body.userAddress
-            })
-           // console.log(insert)
-            await insert.save()
-            res.redirect('/')
-
+            const {userName,emailId,mobileNo,userAddress} = req.body
+            if(userName && emailId && mobileNo && userAddress){
+                const insert = await ContactModel({
+                    userName: req.body.userName,
+                    emailId: req.body.emailId,
+                    mobileNo: req.body.mobileNo,
+                    userAddress: req.body.userAddress
+                })
+               // console.log(insert)
+                await insert.save()
+                res.redirect('/')
+    
+            }else{
+                req.flash('error','All field are required')
+                res.redirect('/contact')
+            }
+           
 
         }catch(error){
             console.log(error)

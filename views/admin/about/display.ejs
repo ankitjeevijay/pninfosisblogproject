@@ -27,6 +27,12 @@
                             <button type="button" class="btn btn-dark btnbg px-4" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add About</button>
                         </div>
+                        <% if(message.length > 0){ %>
+                            <div class="alert alert-danger">
+                               <%= message %>
+                            </div>
+    
+                        <% } %>
             
                         <!------------- add button pop code start -------- -->
             
