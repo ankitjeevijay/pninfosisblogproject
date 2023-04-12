@@ -33,6 +33,7 @@
                 <div class="mb-2">
                     <label for="recipient-name" class="col-form-label">File Upload:</label>
                     <input type="file" name="image" class="form-control">
+                  <div hidden>  <%= edit.image.url %></div>
                 </div>
                 <div class="mb-2 text-center">
                     <img src="<%= edit.image.url %>" width="150px" height="120px" alt="">
