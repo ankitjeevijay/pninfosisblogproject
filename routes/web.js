@@ -1,6 +1,6 @@
 const express = require('express')
 const AboutController = require('../controllers/admin/AboutController')
-const AdminController = require('../controllers/admin/admincontroller')
+const AdminController = require('../controllers/admin/AdminController')
 const BlogController = require('../controllers/admin/BlogController')
 const CategoryController = require('../controllers/admin/CategoryController')
 const ContactController = require('../controllers/admin/ContactController')
