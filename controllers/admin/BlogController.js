@@ -16,7 +16,8 @@ class BlogController {
 
   static insertblog = async (req, res) => {
     try {
-      const { title, description, image } = req.body;
+      const { title, description} = req.body
+      const image = req.files.image
       if (title && description && image) {
         const file = req.files.image;
         //console.log(imagefile)
@@ -36,12 +37,10 @@ class BlogController {
         await result.save();
         //console.log(result)
         res.redirect("/admin/blogdisplay");
-      } else {
-        req.flash("error", "All field are required");
-        res.redirect("/admin/blogdisplay");
       }
     } catch (error) {
-      console.log(error);
+      req.flash("error", "All field are required");
+        res.redirect("/admin/blogdisplay");
     }
   };
 
@@ -71,7 +70,9 @@ class BlogController {
     try {
       // console.log(req.body)
       // console.log(req.params.id)
-      //first delete the image
+      const image = req.files.image;
+      if(image){
+        //first delete the image
       const blog = await BlogModel.findById(req.params.id);
       const imageid = blog.image.public_id;
       // console.log(imageid)
@@ -82,20 +83,25 @@ class BlogController {
         const myimage = await cloudinary.uploader.upload(file.tempFilePath, {
           folder: "blogImage",
         });
-
       const result = await BlogModel.findByIdAndUpdate(req.params.id, {
         title: req.body.title,
         description: req.body.description,
         image: {
-          public_id: myimage.public_id?myimage.public_id:selected_id,
-          url: myimage.secure_url? myimage.secure_url:selected_url,
+          public_id: myimage.public_id,
+          url: myimage.secure_url
         },
       });
-
       await result.save();
       res.redirect("/admin/blogdisplay");
+      }
+      
     } catch (error) {
-      console.log(error);
+      const result = await BlogModel.findByIdAndUpdate(req.params.id, {
+        title: req.body.title,
+        description: req.body.description,
+      });
+      await result.save();
+      res.redirect("/admin/blogdisplay");
     }
   };
 

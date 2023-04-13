@@ -38,7 +38,8 @@ class AboutController {
     try {
 
       //console.log(req.files.image)
-      const {description, image} = req.body
+      const {description} = req.body
+      const image = req.files.image
       if(description && image){
         const file = req.files.image
         //   //console.log(file)
@@ -56,13 +57,10 @@ class AboutController {
        })
        await insert.save()
        res.redirect('/admin/displayabout')
-      }else{
-        req.flash('error', 'All field are required')
-        res.redirect('/admin/displayabout')
       }
-       
     } catch (error) {
-      console.log(error)
+      req.flash('error', 'All field are required')
+      res.redirect('/admin/displayabout')
     }
   }
   static aboutEdit = async (req, res) => {
@@ -77,8 +75,9 @@ class AboutController {
   }
   static aboutUpdate = async (req, res) => {
     try {
-
-       //first delete the image
+      const image = req.files.image
+      if(image){
+         //first delete the image
        const about = await AboutModel.findById(req.params.id)
        const imageid = about.image.public_id
       // console.log(imageid)
@@ -88,10 +87,7 @@ class AboutController {
        const file = req.files.image
        const myimage = await cloudinary.uploader.upload(file.tempFilePath,{
         folder: 'blogImage'
-
        })
-
-
       const update = await AboutModel.findByIdAndUpdate(req.params.id, {
         description: req.body.description,
         image: {
@@ -102,8 +98,14 @@ class AboutController {
       await update.save()
       res.redirect('/admin/displayabout')
 
+      }
+      
     } catch (error) {
-      console.log(error)
+      const update = await AboutModel.findByIdAndUpdate(req.params.id, {
+        description: req.body.description
+      })
+      await update.save()
+      res.redirect('/admin/displayabout')
     }
   }
   static aboutDelete = async (req, res)=>{
