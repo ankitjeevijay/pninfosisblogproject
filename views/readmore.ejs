@@ -10,10 +10,10 @@
       
             <div class="row">
               <div class="col-md-12">
-              <div><h1><%= v.title %></h1></div>
+              <div><h1 class="headingtext"><%= v.title %></h1></div>
               <p><span><%= v.createdAt.toLocaleDateString() %></span></p>
               <div> <img src="<%= v.image.url %>" height="300px" width="80%" alt=""></div>
-              <div><p><%= v.description %></p></div>
+              <div><p class="all-description-text"><%= v.description %></p></div>
                
               </div>
             </div>
@@ -24,7 +24,7 @@
           <div class="col-md-4 rfirst">
             <div class="row" style="background-color:  #183153; color: antiquewhite;">
               <div class="col-md-12">
-                <h1>Recent Blogs</h1>
+                <h1 class="headingtext">Recent Blogs</h1>
               </div>
             </div>
             <% b.forEach((item)=>{ %>
@@ -39,11 +39,11 @@
            <% }) %>  
             <div class="row" style="background-color:  #183153; color: antiquewhite;">
               <div class="col-md-12">
-                <h1>Categories</h1>
+                <h1 class="headingtext">Categories</h1>
               </div>
             </div>
             <% cat.forEach((c)=>{ %>
-              <p class="text-danger fs-4 fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+              <p class=" fs-4 fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                 <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
               </svg><%= c.cat_name %></p>
             <% }) %>
